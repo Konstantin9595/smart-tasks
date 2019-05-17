@@ -1,12 +1,16 @@
 import React from 'react'
+import TaskListItem from './TaskListItem'
 
-const TaskList = () => {
-    const tasks = ["firstTask", "secondTask"]
+const TaskList = ({ tasks }) => {
+
+    const elements = tasks.map(( { id, ...itemProps,  } ) => {
+        return <TaskListItem key={id} { ...itemProps } />
+    })
 
     return (
-        <div className="task-list">
-            { tasks.map((task, ndx) => <li key={ndx}>{ task }</li> ) }
-        </div>
+        <ul className="list-group">
+            { elements }
+        </ul>
     )
 }
 

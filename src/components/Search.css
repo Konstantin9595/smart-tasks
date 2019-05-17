@@ -1,0 +1,12 @@
+.search {
+
+}
+
+.search input {
+    width: 100%;
+    margin: 0;
+}
+
+.search .input-group {
+    margin: 2px 0;
+}

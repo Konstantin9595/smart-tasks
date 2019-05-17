@@ -1,0 +1,8 @@
+.item__status-filter .btn {
+    margin-right: 10px;
+    text-align: center;
+}
+
+.item__status-filter .btn:last-child {
+    margin-right: 0;
+}

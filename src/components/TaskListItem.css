@@ -1,0 +1,25 @@
+.list-group-item {
+    display: flex;
+}
+
+.task__item-manage {
+    text-align: right;
+    flex-grow: 2;
+}
+.task__item-manage span {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.task__item-manage,
+.list__group-task {
+
+}
+
+.task__item-manage .item__manage-delete {
+
+}
+
+.task__item-manage .item__manage-star {
+
+}

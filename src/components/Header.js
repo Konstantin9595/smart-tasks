@@ -1,7 +1,8 @@
 import React from 'react';
+import './Header.css'
 
 const Header = () => {
-    return <header className="App-header"> Smart tasks </header>
+    return <header className="header"> Smart tasks </header>
 }
 
 export default Header;
