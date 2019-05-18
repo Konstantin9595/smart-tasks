@@ -1,5 +1,6 @@
 .list-group-item {
     display: flex;
+    align-items: center;
 }
 
 .task__item-manage {
@@ -8,6 +9,14 @@
 }
 .task__item-manage span {
     padding: 5px;
+    cursor: pointer;
+}
+
+.task__item-manage button {
+    margin-right: 2px;
+}
+
+.list__group-task {
     cursor: pointer;
 }
 

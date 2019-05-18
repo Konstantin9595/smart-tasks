@@ -18,6 +18,15 @@ list-style: none;
 
 }
 
+.done {
+  text-decoration: line-through;
+}
+
+.important {
+  color: #007bff;
+  font-weight: bold;
+}
+
 /*.App {*/
   /*text-align: center;*/
 /*}*/
@@ -33,7 +42,7 @@ list-style: none;
   /*display: inline-block;*/
 /*}*/
 
-/*.App-header {*/
+/*.App-Header {*/
   /*background-color: #282c34;*/
   /*!*min-height: 100vh;*!*/
   /*display: flex;*/
