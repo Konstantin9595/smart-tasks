@@ -23,15 +23,18 @@ class AddItem extends Component {
                 task: value ? value : null,
                 important: false
             })
+
+            this.setState({value: ''});
         }
 
     }
 
     render () {
+        const { value } = this.state
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    <input placeholder="Введите задачу" onChange={this.handleChange} />
+                    <input value={value} placeholder="Введите задачу" onChange={this.handleChange} />
                 </label>
                 <input type="submit" value="Submit" />
                 {/*<i className="fas fa-plus"></i>*/}

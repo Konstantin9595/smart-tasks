@@ -12,7 +12,8 @@ export default class App extends Component {
             {id: 0, task: 'firstTask', done: false, important: false},
             {id: 1, task: 'secondTask', done: false,  important: false},
             {id: 2, task: 'thirdTask', done: false, important: false}
-        ]
+        ],
+        searchText: ""
     }
 
     toggleDone = (arr, ndx) => {
@@ -93,8 +94,22 @@ export default class App extends Component {
         })
     }
 
+
+    getSearchText = (searchText) => {
+        this.setState({searchText})
+    }
+
+    searchFilter = (tasks, searchText) => {
+        if(!searchText) {
+            return tasks
+        }
+
+        return tasks.filter(el => el.task.indexOf(searchText) > -1 )
+    }
+
     render() {
-        const { tasks } = this.state
+        const { tasks, searchText } = this.state
+        const visibleData = this.searchFilter(tasks, searchText)
 
         return (
             <div className="app">
@@ -102,8 +117,13 @@ export default class App extends Component {
                 <div className="wrapper-content">
                     <div className="content">
                         <ItemStatusFilter />
-                        <Search />
-                        <TaskList tasks={tasks} onRemoveItem={this.onRemoveItem} onDisable={this.onDisable} onImportant={this.onImportant} />
+                        <Search
+                            getSearchText={this.getSearchText}/>
+                        <TaskList
+                            tasks={visibleData}
+                            onRemoveItem={this.onRemoveItem}
+                            onDisable={this.onDisable}
+                            onImportant={this.onImportant} />
                         <AddItem onAddItem={this.onAddItem}  />
                     </div>
                 </div>
