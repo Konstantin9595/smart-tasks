@@ -3,10 +3,14 @@ import TaskListItem from '../TaskListItem/TaskListItem'
 import './TaskList.css'
 
 
-const TaskList = ({ tasks, onRemoveItem }) => {
+const TaskList = ({ tasks, onRemoveItem, onDisable, onImportant}) => {
 
     const elements = tasks.map(( { id, ...itemProps,  } ) => {
-        return <TaskListItem onRemoveItem={ () => onRemoveItem(id) } key={id} { ...itemProps } />
+        return <TaskListItem
+            onRemoveItem={ () => onRemoveItem(id) }
+            onDisable={() => onDisable(id) }
+            onImportant={() => onImportant(id) }
+            key={id} { ...itemProps } />
     })
 
     return (

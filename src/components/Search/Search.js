@@ -9,7 +9,7 @@ const Search = () => {
                         <i className="fas fa-search"></i>
                     </div>
                 </div>
-                <input className="form-control" />
+                <input className="form-control" placeholder="Поиск по задачам"/>
             </div>
         </div>
     )

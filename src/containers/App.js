@@ -4,15 +4,53 @@ import Header from '../components/Header'
 import Search from '../components/Search'
 import TaskList from '../components/TaskList';
 import ItemStatusFilter from '../components/ItemStatusFilter'
+import AddItem from '../components/AddItem'
 
 export default class App extends Component {
-
     state = {
         tasks: [
-            {id: 0, task: 'firstTask', important: false},
-            {id: 1, task: 'secondTask', important: true},
-            {id: 2, task: 'thirdTask', important: false}
+            {id: 0, task: 'firstTask', done: false, important: false},
+            {id: 1, task: 'secondTask', done: false,  important: false},
+            {id: 2, task: 'thirdTask', done: false, important: false}
         ]
+    }
+
+    toggleDone = (arr, ndx) => {
+        // find needed task
+        const doneNdx = arr.findIndex(el => el.id === ndx)
+        const neededItem = arr[doneNdx]
+
+        // change needed task parameters
+        const newItem = {
+            ...neededItem,
+            done: !neededItem.done
+        }
+        // create new state immutable
+        return [
+            ...arr.slice(0,doneNdx),
+            newItem,
+            ...arr.slice(doneNdx+1)
+        ]
+
+    }
+
+    toggleImportant = (arr, ndx) => {
+        // find needed task
+        const doneNdx = arr.findIndex(el => el.id === ndx)
+        const neededItem = arr[doneNdx]
+
+        // change needed task parameters
+        const newItem = {
+            ...neededItem,
+            important: !neededItem.important
+        }
+        // create new state immutable
+        return [
+            ...arr.slice(0,doneNdx),
+            newItem,
+            ...arr.slice(doneNdx+1)
+        ]
+
     }
 
     onRemoveItem = (id) => {
@@ -21,6 +59,37 @@ export default class App extends Component {
                 ...state,
                 tasks: state.tasks.filter(el => el.id !== id)
             }
+        })
+    }
+
+    onAddItem = (task = {}) => {
+
+        this.setState((state) => {
+            const newState = [...state.tasks, task]
+
+            return {
+                ...state,
+                tasks: newState
+            }
+        })
+    }
+
+    onDisable = (id) => {
+        this.setState(( { tasks } ) => {
+            return {
+                tasks: this.toggleDone(tasks, id)
+            }
+
+        })
+
+    }
+
+    onImportant = (id) => {
+        this.setState(( { tasks } ) => {
+            return {
+                tasks: this.toggleImportant(tasks, id)
+            }
+
         })
     }
 
@@ -34,7 +103,8 @@ export default class App extends Component {
                     <div className="content">
                         <ItemStatusFilter />
                         <Search />
-                        <TaskList tasks={tasks} onRemoveItem={this.onRemoveItem}/>
+                        <TaskList tasks={tasks} onRemoveItem={this.onRemoveItem} onDisable={this.onDisable} onImportant={this.onImportant} />
+                        <AddItem onAddItem={this.onAddItem}  />
                     </div>
                 </div>
             </div>
