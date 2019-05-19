@@ -13,7 +13,10 @@ export default class App extends Component {
             {id: 1, task: 'secondTask', done: false,  important: false},
             {id: 2, task: 'thirdTask', done: false, important: false}
         ],
-        searchText: ""
+        searchText: "",
+        itemStatusFilter: {
+            type: "all"
+        }
     }
 
     toggleDone = (arr, ndx) => {
@@ -99,7 +102,7 @@ export default class App extends Component {
         this.setState({searchText})
     }
 
-    searchFilter = (tasks, searchText) => {
+    searchFilter = ({ tasks }, searchText) => {
         if(!searchText) {
             return tasks
         }
@@ -107,16 +110,56 @@ export default class App extends Component {
         return tasks.filter(el => el.task.indexOf(searchText) > -1 )
     }
 
+    statusFilter = (state, itemStatusFilter) => {
+        switch (itemStatusFilter.type) {
+            case "all":
+                return {
+                    ...state
+                }
+            case "done":
+                return {
+                    ...state,
+                    tasks: state.tasks.filter(el => el.done && !el.important)
+                }
+            case "important":
+                return {
+                    ...state,
+                    tasks: state.tasks.filter(el => !el.done && el.important)
+                }
+            default:
+                return { ...state }
+        }
+    }
+
+    checkStatus = (status) => {
+        this.setState({
+            itemStatusFilter: {
+                type: status
+            }
+        })
+        // this.setState((state) => {
+        //     return {
+        //         ...state,
+        //         type: state.itemStatusFilter.type
+        //     }
+        // })
+    }
+
     render() {
-        const { tasks, searchText } = this.state
-        const visibleData = this.searchFilter(tasks, searchText)
+
+        const { searchText, itemStatusFilter } = this.state
+        const statusFilter = this.statusFilter(this.state, itemStatusFilter)
+        const visibleData = this.searchFilter(statusFilter, searchText)
 
         return (
             <div className="app">
                 <Header />
                 <div className="wrapper-content">
                     <div className="content">
-                        <ItemStatusFilter />
+                        <ItemStatusFilter
+                            checkStatus={this.checkStatus}
+                            status={itemStatusFilter.type}
+                        />
                         <Search
                             getSearchText={this.getSearchText}/>
                         <TaskList
