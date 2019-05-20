@@ -1,0 +1,32 @@
+.add__item-form {
+    display: flex;
+    margin-top: 2px;
+}
+
+.add__item-form
+label,
+input {
+    width: 100%;
+}
+
+.add__item-form input{
+    padding: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.add__item-form label{
+    margin: 0;
+}
+
+.add__item-form button {
+    margin-left: 2px;
+}
+
+/*.add__item-form label input{*/
+    /*width: 100%;*/
+/*}*/
+
+.add__item-form .add-item {
+
+}

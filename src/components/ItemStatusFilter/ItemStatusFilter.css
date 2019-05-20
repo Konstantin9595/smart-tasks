@@ -1,5 +1,9 @@
+.item__status-filter {
+    display: flex;
+    justify-content: space-between;
+}
+
 .item__status-filter .btn {
-    margin-right: 10px;
     text-align: center;
 }
 

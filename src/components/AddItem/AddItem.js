@@ -32,12 +32,15 @@ class AddItem extends Component {
     render () {
         const { value } = this.state
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="add__item-form">
                 <label>
                     <input value={value} placeholder="Введите задачу" onChange={this.handleChange} />
                 </label>
-                <input type="submit" value="Submit" />
-                {/*<i className="fas fa-plus"></i>*/}
+                {/*<input type="submit" value="Submit" />*/}
+                <button type="submit" className="add-item btn btn-primary">
+                    <i className="fas fa-plus"></i>
+                </button>
+
             </form>
         )
     }

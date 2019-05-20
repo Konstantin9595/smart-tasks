@@ -137,12 +137,6 @@ export default class App extends Component {
                 type: status
             }
         })
-        // this.setState((state) => {
-        //     return {
-        //         ...state,
-        //         type: state.itemStatusFilter.type
-        //     }
-        // })
     }
 
     render() {
